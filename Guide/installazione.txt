@@ -1,0 +1,27 @@
+Nell'upgrade alla versione 1.5 del mpev si devono avere queste accortezze:
+
+1 I nomi degli eseguibili relativamente ai driver MBD e OPCUA diventano SeasXMBD.exe e SeasXOPCUAClient.exe, per uniformare al nome canonico dei componenti MPeV 1.x
+2 I nomi (riferimenti) nei vari file ini dei componenti AEC, HTC, DVW, UDPGW, ecc... delle classi MpeV devono terminare con XV, esempio: C:\FCNXT\MPeV\BIN\SeasXCoreHUBPortLSE.dll --> C:\FCNXT\MPeV\BIN\SeasXCoreHUBPortLSEXV.dll
+3 Rimuovere il driver SIM nella lista dei driver disponibili, in quanto è già contenuto nel CORE, non è più un eseguibile esterno:
+	3.1 Accedere alla configurazione del mpev, e portarsi nel ramo Available drivers
+	3.2 Rimuovere la voce SIM da Name/ID (cancellare la stringa e battere invio)
+	3.3 Salvare la configurazione del SAL.INI
+	N.B È possibile modificare anche direttamente in file SAL.INI nella sezione opportuna, attenzione a non manomettere l'integrità dello stesso file altrimenti il sistema non 	parte più. Per questo si raccomanda l'utilizzo della configurazione ufficiale del mpev.
+ 
+
+Relativamente all'upgrade, anche il pacchetto IPMSUDPGW(dove necessario) va aggiornato. 
+
+Anche il LAM deve essere aggiornato, come pure l'OBTS (se è nella fornitura).
+
+Procedura:
+1 Chiudere MPev, LAM e qualsiasi servizio collegato a Mpev(filtra servizi per "FCNXT")
+2 Fare un backup di MPev rinominando la copia "MPev_versione" es "MPeV_1_4"  
+3 Lanciare installazione dell'MPev(se non parte vuol dire che non hai chiuso tutto)
+4 Lasciare le spunte di default, ci saranno spunte diverse tra server e client e lo capisce lui da solo
+5 Andare avanti fino alla fine
+6 Se la macchina ha bisogno del LAM, lanciare l'installazione
+7 Togliere la spunta dalla default configuration e installare
+8 Installare IPMS Gateway se necessario(su server) 
+9 Portare LOCALCONF e SHAREDCONF da un altra macchina(aggiungere configurazioni locali se previsto, es. ARPA, EICDIS,  
+10 Lanciare il LAM(farlo dalla cartella e non dal collegamento per sicurezza, e aggiornare il collegamento)
+11 Accedere, aprire Setting, General, scorrere su IPMS e cambiare la source alla versione corrente 
